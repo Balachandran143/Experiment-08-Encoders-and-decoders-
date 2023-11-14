@@ -1,8 +1,15 @@
-# Experiment-08- Encoders-and-decoders 
-### AIM: To implement 8 to 3 Encoder and  3to8 Decoder using verilog and validate its outputs
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
-### THEORY 
+# Exp-07- ENCODERS AND DECODERS
+
+### AIM: 
+To implement 8 to 3 Encoder and  3to8 Decoder using verilog and validate its outputs
+
+### HARDWARE REQUIRED: 
+– PC, Cyclone II , USB flasher
+
+### SOFTWARE REQUIRED:   
+Quartus prime
+
+### THEORY: 
 
 ## Encoders
 Binary code of N digits can be used to store 2N distinct elements of coded information. This is what encoders and decoders are used for. Encoders convert 2N lines of input into a code of N bits and Decoders decode the N bits into 2N lines.
@@ -54,79 +61,117 @@ D7 = X Y Z
 ![image](https://user-images.githubusercontent.com/36288975/171543866-5a6eace6-8683-49d7-9c4f-a7cb30ec3035.png)
 ## Figure -04 8 to 3 Decoder implementation 
 
-# Procedure
+### Procedure:
+Step1:
+
+create module encoder and decoder.
+
+Step-2:
+
+Get inputs and outputs for encoders and decoders.
+
+Step-3:
+
+perform or operation for encoder and and logic for decoders.
+
+Step-4:
+
+perform RTL LOGIC and get waveform.
+
+Step-5:
+
+End the module.
+
+
+### PROGRAM:
 ```
-1.create module encoder and decoder.
-
-2.Get inputs and outputs for encoders and decoders.
-
-3.perform or operation for encoder and and logic for decoders.
-
-4.perform RTL LOGIC and get waveform.
-```
-
-## PROGRAM 
-```
+/*
 Program for Endocers and Decoders  and verify its truth table in quartus using Verilog programming.
 Developed by: Balachandran S
-RegisterNumber: 22006708
-```
+RegisterNumber: 212222100008
+*/
+i.)For Encoder:
+module enc(a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
+input y0,y1,y2,y3,y4,y5,y6,y7;
+output a0,a1,a2;
+or(a0,y7,y5,y3,y1);
+or(a1,y7,y6,y3,y2);
+or(a2,y7,y6,y5,y4);
+endmodule
 
-## ENCODERS:
-```
-module enc(d0,d1,d2,d3,d4,d5,d6,d7,a,b,c);
-input d0,d1,d2,d3,d4,d5,d6,d7;
-output a,b,c;
-or(a,d4,d5,d6,d7);
-or(b,d2,d3,d6,d7);
-or(c,d1,d3,d5,d7);
+
+ii.)For Decoder:
+module dec (a0,a1,a2,y0,y1,y2,y3,y4,y5,y6,y7);
+input a0,a1,a2;
+output y0,y1,y2,y3,y4,y5,y6,y7;
+wire a0bar,a1bar,a2bar;
+not(a0bar,a0);
+not(a1bar,a1);
+not(a2bar,a2);
+and(y0,a0bar,a1bar,a2bar);
+and(y1,a0,a1bar,a2bar);
+and(y2,a0bar,a1,a2bar);
+and(y3,a0,a1,a2bar);
+and(y4,a0bar,a1bar,a2);
+and(y5,a0,a1bar,a2);
+and(y6,a0bar,a1,a2);
+and(y7,a0,a1,a2);
 endmodule
 ```
 
-## DECODERS:
-```
-module enc(a,b,c,d0,d1,d2,d3,d4,d5,d6,d7);
-input a,b,c;
-output d0,d1,d2,d3,d4,d5,d6,d7;
-assign d0 = (~a&~b&~c);
-assign d1 = (~a&~b&c);
-assign d2 = (~a&b&~c);
-assign d3 = (~a&b&c);
-assign d4 = (a&~b&~c);
-assign d5 = (a&~b&c);
-assign d6 = (a&b&~c);
-assign d7 = (a&b&c);
-endmodule 
-```
 
 
-# RTL LOGIC  
-
-## ENCODERS:
-![Screenshot_20230125_120220](https://user-images.githubusercontent.com/118886489/214379521-1438bf02-3fc2-4bdd-abb2-c637613a17fb.png)
-
-## DECODERS:
-![Screenshot_20230125_120233](https://user-images.githubusercontent.com/118886489/214379765-25281d71-6769-4a94-a9a5-7d08db2bbf99.png)
 
 
-# TIMING DIGRAMS  
 
-## ENCODERS:
-![Screenshot_20230125_120331](https://user-images.githubusercontent.com/118886489/214379972-29cbfab9-e7c3-4f63-8124-e0732fc92a3a.png)
+### RTL LOGIC:
 
-## DECODERS:
-![Screenshot_20230125_120412](https://user-images.githubusercontent.com/118886489/214380080-93188062-d5a2-4016-b457-31310e239bdb.png)
+i.)For Encoder:
 
-
-# TRUTH TABLE 
-
-## ENCODERS:
-![Screenshot_20230125_120437](https://user-images.githubusercontent.com/118886489/214380229-72e60413-15c0-4dd1-8f1e-f8b84dd7f186.png)
-
-## DECODERS:
-![Screenshot_20230125_120457](https://user-images.githubusercontent.com/118886489/214380422-ba18d9a7-c842-4bdd-b17e-9d21b532c689.png)
+![image](https://github.com/shoaib3136/Experiment-08-Encoders-and-decoders-/assets/117919362/2b24d5eb-5aa8-49e4-a1e1-cedd3e6d1881)
 
 
-# RESULTS 
-Thus the program to desing encoder and decoder is done.
 
+ii.)For Decoder:
+
+![image](https://github.com/shoaib3136/Experiment-08-Encoders-and-decoders-/assets/117919362/fdc0be8f-9d24-457a-bc4b-d8b89b433dc3)
+
+
+
+
+
+
+
+
+### TIMING DIGRAMS: 
+
+i.)For Encoder:
+
+
+![image](https://github.com/shoaib3136/Experiment-08-Encoders-and-decoders-/assets/117919362/577dd6d9-a4ea-4d36-b475-48494c3faf9a)
+
+
+ii.)For Decoder:
+
+
+![WhatsApp Image 2023-06-10 at 16 27 11](https://github.com/shoaib3136/Experiment-08-Encoders-and-decoders-/assets/117919362/09841860-9faf-4887-a33e-724909fb44ff)
+
+
+
+
+
+### TRUTH TABLE:
+
+i.)For Encoder:
+![image](https://github.com/shoaib3136/Experiment-08-Encoders-and-decoders-/assets/117919362/ede39c65-e906-479f-8d19-33708741a1de)
+
+
+ii.)For Decoder:
+
+![image](https://github.com/shoaib3136/Experiment-08-Encoders-and-decoders-/assets/117919362/5552d32e-d0bb-4d2c-9d72-286200d1e244)
+
+
+
+
+### RESULTS:
+Thus the program to design encoder and decoder is successfully completed.
